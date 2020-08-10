@@ -36,6 +36,26 @@ const pool = new pg.Pool({
 
 
 // Express routes
+app.get("/",(req, res) => {
+  res.render("home")
+})
+
+app.get("/pets",(req, res) => {
+  res.render("home")
+})
+
+app.get("/pets/species",(req, res) => {
+  res.render("home")
+})
+
+app.get("/pets/species/id",(req, res) => {
+  res.render("home")
+})
+
+app.get("/pets/new",(req, res) => {
+  res.render("home")
+})
+
 app.get('*', (req, res) => {
   res.render("home")
 })
