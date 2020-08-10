@@ -31,9 +31,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 const pool = new pg.Pool({
-  connectionString: "postgres://postgres:password@127.0.0.1:5432/pet_database"
+  connectionString: "postgres://postgres:example@127.0.0.1:5432/pet_database"
 })
 
+// random comment
 
 // Express routes
 app.get('*', (req, res) => {
