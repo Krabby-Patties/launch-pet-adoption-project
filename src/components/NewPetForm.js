@@ -29,18 +29,18 @@ const NewPetForm = props => {
       petImage: newPet.petImage,
       vaccinationStatus: newPet.vaccinationStatus
     }
-    if(props._________(payload)){
-      setNewPet({
-        name:"", 
-        phoneNumber:"",
-        email:"",
-        petName:"",
-        petAge:"",
-        petType:"",
-        petImage:"",
-        vaccinationStatus:""
-      })
-    }
+    props._________(payload)
+    setNewPet({
+      name:"", 
+      phoneNumber:"",
+      email:"",
+      petName:"",
+      petAge:"",
+      petType:"",
+      petImage:"",
+      vaccinationStatus:""
+    })
+    
   }
   return(
     <form onSubmit={handlePetSubmit}>
