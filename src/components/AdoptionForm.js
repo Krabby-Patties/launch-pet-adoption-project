@@ -21,14 +21,15 @@ const AdoptionForm = props => {
       email: newApplication.email,
       homeStatus: newApplication.homeStatus
     }
-    if(props._________(payload)){
-      setNewApplication({
-        name:"", 
-        phoneNumber:"",
-        email:"",
-        homeStatus:""
-      })
-    }
+    props._________(payload)
+
+    setNewApplication({
+      name:"", 
+      phoneNumber:"",
+      email:"",
+      homeStatus:""
+    })
+    
   }
   return(
     
