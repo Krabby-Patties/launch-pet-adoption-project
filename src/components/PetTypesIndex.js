@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const PetTypesIndex = props => {
   const petTypesDisplay = [];
   useEffect(() => {
-    fetch('/api/_')
+    fetch('/api/v1/pet_types')
       .then((response) => response.json())
       .then((petTypes) => {
         petTypesDisplay = petTypes.map((petType) => {

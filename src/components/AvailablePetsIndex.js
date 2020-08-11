@@ -5,7 +5,7 @@ const AvailablePetsIndex = props => {
   const { pet_type } = useParams()
   const availablePetsDisplay = [];
   useEffect(() => {
-    fetch('/api/_')
+    fetch(`/api/v1/adoptable_pets?type=${pet_type}`)
       .then((response) => response.json())
       .then((availablePets) => {
         availablePetsDisplay = availablePets.map((pet) => {

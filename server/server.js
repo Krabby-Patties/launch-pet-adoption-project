@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 const pool = new pg.Pool({
-  connectionString: "postgres://postgres:example@127.0.0.1:5432/pet_database"
+  connectionString: "postgres://postgres:password@127.0.0.1:5432/pet_database"
 })
 
 // API routes
@@ -40,24 +40,32 @@ const pool = new pg.Pool({
 app.get('/api/v1/pet_types', (req, res) => {
   const petsTypeQuery = "SELECT * FROM pet_types"
   pool.query(petsTypeQuery)
-  .then(result => {
-    res.send(result)
-  }) 
-  .catch(error => {
-    console.log(error)
-    res.sendStatus(500)
-  })
+    .then(result => {
+      res.send(result)
+    })
+    .catch(error => {
+      console.log(error)
+      res.sendStatus(500)
+    })
 })
 
 //list of all the adoptable pets of a specific type
 app.get('/api/v1/adoptable_pets', (req, res) => {
   const type_id = req.query.type
-  let queryString ="SELECT * FROM adoptable_pets WHERE type_id = ($1)"
+  let queryString = "SELECT * FROM adoptable_pets WHERE type_id = ($1)"
   pool.query(queryString, [type_id])
     .then(result => {
       res.send(result)
     })
 });
+
+//
+
+
+//
+
+
+
 
 // Express routes
 app.get('*', (req, res) => {
