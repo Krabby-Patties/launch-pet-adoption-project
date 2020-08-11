@@ -12,7 +12,7 @@ const NewPetForm = props => {
     vaccinationStatus: ""
   })
 
-  const [appStatus, setAppStatus] = useState("")
+  const [appStatus, setAppStatus] = useState("");
 
   const handlePetChange = event => {
     setNewPet({
@@ -34,12 +34,10 @@ const NewPetForm = props => {
       vaccinationStatus: newPet.vaccinationStatus
     }
 
-    let isFilledOut = true
+    let isFilledOut = true;
 
     let newPetKeys = Object.keys(payload)
-
     newPetKeys.forEach(key => {
-      console.log("This is what we are consologging", newPet[key])
       if (newPet[key] === "") {
         isFilledOut = false
       }
@@ -55,41 +53,51 @@ const NewPetForm = props => {
         .then(result => {
           setAppStatus("Your request is in process")
         })
-        .catch()
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 
-  let form
+  let form;
   if (appStatus !== "Your request is in process") {
     form = (
       <form onSubmit={handlePetSubmit}>
         <label htmlFor="name">Your Name:
-        <input type="text" name="name" id="name" onChange={handlePetChange} value={newPet.name} />
+          <input type="text" name="name" id="name" onChange={handlePetChange} value={newPet.name} />
         </label>
+
         <label htmlFor="phoneNumber">Phone Number:
-        <input type="text" name="phoneNumber" id="phoneNumber" onChange={handlePetChange} value={newPet.phoneNumber} />
+          <input type="text" name="phoneNumber" id="phoneNumber" onChange={handlePetChange} value={newPet.phoneNumber} />
         </label>
+
         <label htmlFor="email">Email Address:
-        <input type="text" name="email" id="email" onChange={handlePetChange} value={newPet.email} />
+          <input type="text" name="email" id="email" onChange={handlePetChange} value={newPet.email} />
         </label>
+
         <label htmlFor="petName">Pet Name:
-        <input type="text" name="petName" id="petName" onChange={handlePetChange} value={newPet.petName} />
+          <input type="text" name="petName" id="petName" onChange={handlePetChange} value={newPet.petName} />
         </label>
+
         <label htmlFor="petAge">Pet Age:
-        <input type="text" name="petAge" id="petAge" onChange={handlePetChange} value={newPet.petAge} />
+          <input type="text" name="petAge" id="petAge" onChange={handlePetChange} value={newPet.petAge} />
         </label>
+
         <label htmlFor="petType">Select Pet Type</label>
         <select name="petType" id="petType" onChange={handlePetChange} value={newPet.petType}>
           <option value="default" disabled hidden>Select Pet Type</option>
           <option value="fourLegged">Four-Legged</option>
           <option value="twoLegged">Two-Legged</option>
         </select>
+
         <label htmlFor="image">Image Source:
-        <input type="text" name="petImage" id="petImage" onChange={handlePetChange} value={newPet.petImage}/>
+          <input type="text" name="petImage" id="petImage" onChange={handlePetChange} value={newPet.petImage} />
         </label>
+
         <label htmlFor="vaccinationStatus">Vaccination Status:
-        <input type="text" name="vaccinationStatus" id="vaccinationStatus" onChange={handlePetChange} value={newPet.vaccinationStatus} />
+          <input type="text" name="vaccinationStatus" id="vaccinationStatus" onChange={handlePetChange} value={newPet.vaccinationStatus} />
         </label>
+        
         <div>
           <input className="button" type="submit" value="Submit" />
         </div>
