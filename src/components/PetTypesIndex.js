@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const PetTypesIndex = props => {
-  const petTypesDisplay = [];
+  const [petTypesDisplay, setPetTypesDisplay] = useState([]);
   useEffect(() => {
-    fetch('/api/_')
+    fetch('/api/v1/pet_types')
       .then((response) => response.json())
       .then((petTypes) => {
-        petTypesDisplay = petTypes.map((petType) => {
+        setPetTypesDisplay(petTypes.rows.map((petType) => {
           return (
-            <div>
-              <Link to={`/pets/${petType.type}`}><img src={petType.img_url_random_animal} /></Link>
-              <Link to={`/pets/${petType.type}`}>{petType.type}</Link>
+            <div key={petType.id}>
+              <Link to={`/pets/${petType.id}`}><img src={petType.img_url_random_animal} /></Link>
+              <Link to={`/pets/${petType.id}`}>{petType.type}</Link>
             </div>
           )
-        });
-      })
+        }));
+      });
   }, []);
 
   return (

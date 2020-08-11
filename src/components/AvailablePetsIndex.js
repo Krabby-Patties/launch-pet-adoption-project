@@ -1,29 +1,30 @@
-import React, { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const AvailablePetsIndex = props => {
-  const { pet_type } = useParams()
-  const availablePetsDisplay = [];
+  const [availablePetsDisplay, setAvailablePetsDisplay] = useState([]);
+  const species = props.match.params.species;
+
   useEffect(() => {
-    fetch('/api/_')
+    fetch(`/api/v1/adoptable_pets?type=${species}`)
       .then((response) => response.json())
       .then((availablePets) => {
-        availablePetsDisplay = availablePets.map((pet) => {
+        setAvailablePetsDisplay(availablePets.rows.map((pet) => {
           return (
-            <tr>
-              <td><img src={pet.img_url} /></td>
-              <td><Link to={`/pets/${pet_type}/${pet.id}`}>{pet.name}</Link></td>
+            <tr key={pet.id}>
+              <td><img src={pet.img_url} alt={`Photo of ${pet.name}`} /></td>
+              <td><Link to={`/pets/${species}/${pet.id}`}>{pet.name}</Link></td>
               <td>{pet.age}</td>
               <td>{pet.vaccination_status ? 'Yes' : 'No'}</td>
             </tr>
           )
-        });
-      })
+        }));
+      });
   }, []);
 
   return (
     <>
-      <h1>{pet_type}</h1>
+      <h1>{species}</h1>
       <table>
         <thead>
           <tr>
@@ -34,7 +35,7 @@ const AvailablePetsIndex = props => {
           </tr>
         </thead>
         <tbody>
-          {petTypesDisplay}
+          {availablePetsDisplay}
         </tbody>
       </table>
     </>
