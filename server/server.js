@@ -34,8 +34,6 @@ const pool = new pg.Pool({
   connectionString: "postgres://postgres:password@127.0.0.1:5432/pet_database"
 })
 
-// random comment
-
 // Express routes
 app.get('*', (req, res) => {
   res.render("home")
