@@ -36,6 +36,10 @@ const pool = new pg.Pool({
 
 // API routes
 
+app.get("/", (req, res) => {
+  res.redirect("/pets")
+})
+
 //Index for pet_types (landing page)
 app.get('/api/v1/pet_types', (req, res) => {
   const petsTypeQuery = "SELECT * FROM pet_types"
@@ -58,13 +62,6 @@ app.get('/api/v1/adoptable_pets', (req, res) => {
       res.send(result)
     })
 });
-
-//
-
-
-//
-
-
 
 
 // Express routes

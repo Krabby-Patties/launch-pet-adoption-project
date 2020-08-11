@@ -29,6 +29,7 @@ const NewPetForm = props => {
       petImage: newPet.petImage,
       vaccinationStatus: newPet.vaccinationStatus
     }
+    //fetch post goes here?
     props._________(payload)
     setNewPet({
       name:"", 
@@ -71,7 +72,6 @@ const NewPetForm = props => {
         <input type="text" name="vaccinationStatus" id="vaccinationStatus" onChange={handlePetChange} value={newPet.vaccinationStatus} />
       </label>  
       <div>
-        <button className="button">Submit</button>
         <input className="button" type="submit" value="Submit" />
       </div>
     </form>

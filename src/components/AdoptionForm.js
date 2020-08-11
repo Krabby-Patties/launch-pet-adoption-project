@@ -5,7 +5,7 @@ const AdoptionForm = props => {
     name:"", 
     phoneNumber:"",
     email:"",
-    homeStatus:""
+    homeStatus:"default"
   })
   const handleAppChange = event => {
     setNewApplication({
@@ -21,7 +21,7 @@ const AdoptionForm = props => {
       email: newApplication.email,
       homeStatus: newApplication.homeStatus
     }
-    props._________(payload)
+    //Fetch will go here.
 
     setNewApplication({
       name:"", 
@@ -45,11 +45,11 @@ const AdoptionForm = props => {
       </label>
       <label htmlFor="homeStatus">Select Home Status</label>
       <select name="homeStatus" id="homeStatus" onChange={handleAppChange} value={newApplication.homeStatus}>
+        <option value="default" disabled hidden>Select Home Status</option>
         <option value="own">Own</option>
         <option value="rent">Rent</option>
       </select>
       <div>
-        <button className="button">Submit</button>
         <input className="button" type="submit" value="Submit" />
       </div>
     </form>
