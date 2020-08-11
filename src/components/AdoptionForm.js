@@ -2,17 +2,19 @@ import React, { useState } from 'react'
 
 const AdoptionForm = props => {
   const [newApplication, setNewApplication] = useState({
-    name:"", 
-    phoneNumber:"",
-    email:"",
-    homeStatus:""
+    name: "",
+    phoneNumber: "",
+    email: "",
+    homeStatus: "default"
   })
+
   const handleAppChange = event => {
     setNewApplication({
       ...newApplication,
       [event.currentTarget.name]: event.currentTarget.value
     })
   }
+
   const handleAppSubmit = event => {
     event.preventDefault()
     let payload = {
@@ -21,18 +23,16 @@ const AdoptionForm = props => {
       email: newApplication.email,
       homeStatus: newApplication.homeStatus
     }
-    props._________(payload)
 
     setNewApplication({
-      name:"", 
-      phoneNumber:"",
-      email:"",
-      homeStatus:""
+      name: "",
+      phoneNumber: "",
+      email: "",
+      homeStatus: ""
     })
-    
   }
-  return(
-    
+
+  return (
     <form onSubmit={handleAppSubmit}>
       <label htmlFor="name">Your Name:
         <input type="text" name="name" id="name" onChange={handleAppChange} value={newApplication.name} />
@@ -45,15 +45,14 @@ const AdoptionForm = props => {
       </label>
       <label htmlFor="homeStatus">Select Home Status</label>
       <select name="homeStatus" id="homeStatus" onChange={handleAppChange} value={newApplication.homeStatus}>
+        <option value="default" disabled hidden>Select Home Status</option>
         <option value="own">Own</option>
         <option value="rent">Rent</option>
       </select>
       <div>
-        <button className="button">Submit</button>
         <input className="button" type="submit" value="Submit" />
       </div>
     </form>
-    
   )
 }
 
