@@ -1,8 +1,13 @@
 import React from "react"
-import { Route, Switch, BrowserRouter } from "react-router-dom"
+import { Route, BrowserRouter } from "react-router-dom"
+import Navbar from "./Navbar"
 
 const App = props => {
-  return <div>Replace this div with your Router.</div>
+  return (
+    <BrowserRouter>
+      <Route path="/" component={Navbar} />
+    </BrowserRouter>
+  )
 }
 
 export default App
