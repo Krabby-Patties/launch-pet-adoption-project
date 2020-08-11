@@ -2,21 +2,25 @@ import React, { useState } from 'react'
 
 const NewPetForm = props => {
   const [newPet, setNewPet] = useState({
-    name:"", 
-    phoneNumber:"",
-    email:"",
-    petName:"",
-    petAge:"",
-    petType:"",
-    petImage:"",
-    vaccinationStatus:""
+    name: "",
+    phoneNumber: "",
+    email: "",
+    petName: "",
+    petAge: "",
+    petType: "default",
+    petImage: "",
+    vaccinationStatus: ""
   })
+
+  const [appStatus, setAppStatus] = useState("")
+
   const handlePetChange = event => {
     setNewPet({
       ...newPet,
       [event.currentTarget.name]: event.currentTarget.value
     })
   }
+
   const handlePetSubmit = event => {
     event.preventDefault()
     let payload = {
@@ -29,52 +33,74 @@ const NewPetForm = props => {
       petImage: newPet.petImage,
       vaccinationStatus: newPet.vaccinationStatus
     }
-    props._________(payload)
-    setNewPet({
-      name:"", 
-      phoneNumber:"",
-      email:"",
-      petName:"",
-      petAge:"",
-      petType:"",
-      petImage:"",
-      vaccinationStatus:""
+
+    let isFilledOut = true
+
+    let newPetKeys = Object.keys(payload)
+
+    newPetKeys.forEach(key => {
+      console.log("This is what we are consologging", newPet[key])
+      if (newPet[key] === "") {
+        isFilledOut = false
+      }
     })
-    
+
+    if (isFilledOut) {
+      fetch("/api/v1/pet_surrender_applications", {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' },
+        application_status: "pending"
+      })
+        .then(result => {
+          setAppStatus("Your request is in process")
+        })
+        .catch()
+    }
   }
-  return(
-    <form onSubmit={handlePetSubmit}>
-      <label htmlFor="name">Your Name:
+
+  let form
+  if (appStatus !== "Your request is in process") {
+    form = (
+      <form onSubmit={handlePetSubmit}>
+        <label htmlFor="name">Your Name:
         <input type="text" name="name" id="name" onChange={handlePetChange} value={newPet.name} />
-      </label>
-      <label htmlFor="phoneNumber">Phone Number:
+        </label>
+        <label htmlFor="phoneNumber">Phone Number:
         <input type="text" name="phoneNumber" id="phoneNumber" onChange={handlePetChange} value={newPet.phoneNumber} />
-      </label>
-      <label htmlFor="email">Email Address:
+        </label>
+        <label htmlFor="email">Email Address:
         <input type="text" name="email" id="email" onChange={handlePetChange} value={newPet.email} />
-      </label>
-      <label htmlFor="petName">Pet Name:
+        </label>
+        <label htmlFor="petName">Pet Name:
         <input type="text" name="petName" id="petName" onChange={handlePetChange} value={newPet.petName} />
-      </label>
-      <label htmlFor="petAge">Pet Age:
+        </label>
+        <label htmlFor="petAge">Pet Age:
         <input type="text" name="petAge" id="petAge" onChange={handlePetChange} value={newPet.petAge} />
-      </label>
-      <label htmlFor="petType">Select Pet Type</label>
-      <select name="petType" id="petType" onChange={handlePetChange} value={newPet.petType}>
-        <option value="fourLegged">Four-Legged</option>
-        <option value="twoLegged">Two-Legged</option>
-      </select>
-      <label htmlFor="image">Image of {newPet.petName}:
-        <input src={newPet.image} alt="image of pet" />
-      </label>  
+        </label>
+        <label htmlFor="petType">Select Pet Type</label>
+        <select name="petType" id="petType" onChange={handlePetChange} value={newPet.petType}>
+          <option value="default" disabled hidden>Select Pet Type</option>
+          <option value="fourLegged">Four-Legged</option>
+          <option value="twoLegged">Two-Legged</option>
+        </select>
+        <label htmlFor="image">Image Source:
+        <input type="text" name="petImage" id="petImage" onChange={handlePetChange} value={newPet.petImage}/>
+        </label>
         <label htmlFor="vaccinationStatus">Vaccination Status:
         <input type="text" name="vaccinationStatus" id="vaccinationStatus" onChange={handlePetChange} value={newPet.vaccinationStatus} />
-      </label>  
-      <div>
-        <button className="button">Submit</button>
-        <input className="button" type="submit" value="Submit" />
-      </div>
-    </form>
+        </label>
+        <div>
+          <input className="button" type="submit" value="Submit" />
+        </div>
+      </form>)
+  }
+
+  return (
+    <>
+      {appStatus}
+      {form}
+    </>
   )
 }
 
