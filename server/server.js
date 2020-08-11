@@ -18,8 +18,7 @@ app.engine(
   hbsMiddleware({
     defaultLayout: "default",
     extname: ".hbs"
-  })
-)
+  }))
 
 app.set("view engine", "hbs")
 
@@ -34,27 +33,30 @@ const pool = new pg.Pool({
   connectionString: "postgres://postgres:password@127.0.0.1:5432/pet_database"
 })
 
-
-// Express routes
-app.get("/",(req, res) => {
-  res.render("home")
+app.get("/", (req, res) => {
+  res.redirect("/pets")
 })
 
-app.get("/pets",(req, res) => {
-  res.render("home")
+app.get('/api/v1/pet_types', (req, res) => {
+  const petsTypeQuery = "SELECT * FROM pet_types"
+  pool.query(petsTypeQuery)
+    .then(result => {
+      res.send(result)
+    })
+    .catch(error => {
+      console.log(error)
+      res.sendStatus(500)
+    })
 })
 
-app.get("/pets/species",(req, res) => {
-  res.render("home")
-})
-
-app.get("/pets/species/id",(req, res) => {
-  res.render("home")
-})
-
-app.get("/pets/new",(req, res) => {
-  res.render("home")
-})
+app.get('/api/v1/adoptable_pets', (req, res) => {
+  const type_id = req.query.type
+  let queryString = "SELECT * FROM adoptable_pets WHERE type_id = ($1)"
+  pool.query(queryString, [type_id])
+    .then(result => {
+      res.send(result)
+    })
+});
 
 app.get('*', (req, res) => {
   res.render("home")
