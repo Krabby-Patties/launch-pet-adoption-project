@@ -34,11 +34,38 @@ const pool = new pg.Pool({
   connectionString: "postgres://postgres:password@127.0.0.1:5432/pet_database"
 })
 
+// API routes
+
+//Index for pet_types (landing page)
+app.get('/api/v1/pet_types', (req, res) => {
+  const petsTypeQuery = "SELECT * FROM pet_types"
+  pool.query(petsTypeQuery)
+  .then(result => {
+    res.send(result)
+  }) 
+  .catch(error => {
+    console.log(error)
+    res.sendStatus(500)
+  })
+})
+
+//list of all the adoptable pets of a specific type
+app.get('/api/v1/adoptable_pets', (req, res) => {
+  const type_id = req.query.type
+  let queryString ="SELECT * FROM adoptable_pets WHERE type_id = ($1)"
+  pool.query(queryString, [type_id])
+    .then(result => {
+      res.send(result)
+    })
+});
 
 // Express routes
 app.get('*', (req, res) => {
   res.render("home")
 })
+
+
+
 
 app.listen(3000, "0.0.0.0", () => {
   console.log("Server is listening on port 3000...")
