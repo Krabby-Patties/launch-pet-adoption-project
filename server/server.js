@@ -58,6 +58,14 @@ app.get('/api/v1/adoptable_pets', (req, res) => {
     })
 });
 
+app.get("/api/v1/show_page", (req, res) => {
+  const petId = req.query.id
+  const queryString = "SELECT * FROM adoptable_pets WHERE id = ($1) "
+  pool.query(queryString, [petId]).then(result => {
+    res.send(result)
+  })
+})
+
 app.get('*', (req, res) => {
   res.render("home")
 })
