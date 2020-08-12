@@ -15,7 +15,7 @@ const Navbar = props => {
         <Link to="/pet_types">Pet Types</Link>
       </div>
       <div className="navbar">
-        <Link to="/adoption_form">I Want to Adopt</Link>
+        <Link to="/adoptions/new">Put a Pet Up For Adoption</Link>
       </div>
       <div className="content">
         <h1 className="page-title">Pet Adoption</h1>

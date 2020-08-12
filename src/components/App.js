@@ -5,7 +5,7 @@ import Navbar from "./Navbar"
 const App = props => {
   return (
     <BrowserRouter>
-      <Route path="/pets" component={Navbar} />
+      <Route path="/" component={Navbar} />
     </BrowserRouter>
   )
 }
