@@ -10,7 +10,7 @@ const PetShowPage = (props) => {
   const [animalPageFound, setAnimalPageFound] = useState(true)
 
   useEffect(() => {
-    fetch(`/api/v1/adoptable_pets?type=${speciesId}&id=${adoptablePetId}`)
+    fetch(`/api/v1/show_page?type=${speciesId}&id=${adoptablePetId}`)
       .then(response => {
         if (response.ok) {
           return response
@@ -19,7 +19,7 @@ const PetShowPage = (props) => {
         }
       })
       .then(response => response.json())
-      .then(adoptablePet => setAdoptablePet(adoptablePet.rows))
+      .then(adoptablePet => setAdoptablePet(adoptablePet.rows[0]))
       .catch(error => {
         console.log(error)
       })
@@ -31,6 +31,7 @@ const PetShowPage = (props) => {
   }
   const animalInformation = (
     <div>
+      <img src={adoptablePet.img_url} alt={`Photo of ${adoptablePet.name}`} />
       <p>Name {adoptablePet.name}</p>
       <p>Age {adoptablePet.age}</p>
       <p>Vaccination Status {adoptablePet.vaccination_status}</p>
