@@ -51,8 +51,9 @@ const NewPetForm = props => {
         application_status: "pending"
       })
         .then(result => {
+          if(result.ok){
           setAppStatus("Your request is in process")
-        })
+         } })
         .catch(error => {
           console.log(error)
         })
