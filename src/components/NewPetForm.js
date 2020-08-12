@@ -102,7 +102,6 @@ const NewPetForm = props => {
           <input className="button" type="submit" value="Submit" />
         </div>
       </form>)
-  
 
   return (
     <>
