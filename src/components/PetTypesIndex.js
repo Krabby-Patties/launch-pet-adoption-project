@@ -12,6 +12,7 @@ const PetTypesIndex = props => {
             <div key={petType.id}>
               <Link to={`/pets/${petType.id}`}><img src={petType.img_url_random_animal} /></Link>
               <Link to={`/pets/${petType.id}`}>{petType.type}</Link>
+              <p>{petType.description}</p>
             </div>
           )
         }));
