@@ -64,7 +64,6 @@ const PetShowPage = (props) => {
       {animalInformation}
       {submitButton}
       {form}
-
     </>
   )
 }
