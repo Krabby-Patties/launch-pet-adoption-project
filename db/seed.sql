@@ -63,3 +63,7 @@ INSERT INTO adoptable_pets
 VALUES
     ('Po the Giant Panda.', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fae01.alicdn.com%2Fkf%2FHTB15x5aRVXXXXbkXVXXq6xXFXXXj%2F2017-New-Hot-Kung-fu-Panda-Po-3-Sitting-Plush-Toys-Large-Dolls-Furnishing-Articles-Figures.jpg_640x640.jpg&f=1&nofb=1', 12, true, 'Po is famously known for being a kung fu master', 'null', 1);
 
+INSERT INTO adoption_applications
+    (name, phone_number, email, home_status, application_status, pet_id)
+VALUES
+    ('grandma', '5551234567', 'grandma@looneytunes.com', 'own', 'pending', '8');
