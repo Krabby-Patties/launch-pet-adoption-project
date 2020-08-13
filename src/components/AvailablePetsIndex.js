@@ -20,11 +20,18 @@ const AvailablePetsIndex = props => {
           )
         }));
       });
-  }, []);
+  }, [species]);
+
+  let speciesName = ""
+  if(species == 1){
+    speciesName = "Two Legged"
+  } else if (species== 2) {
+    speciesName = "Four Legged"
+  }
 
   return (
     <>
-      <h1>{species}</h1>
+      <h1>{speciesName}</h1>
       <table>
         <thead>
           <tr>
