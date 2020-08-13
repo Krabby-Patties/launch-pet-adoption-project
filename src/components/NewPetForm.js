@@ -60,7 +60,7 @@ const NewPetForm = props => {
   }
 
   let form;
-  
+  if(appStatus !== "Your request is in process"){
     form = (
       <form onSubmit={handlePetSubmit}>
         <label htmlFor="name">Your Name:
@@ -86,8 +86,8 @@ const NewPetForm = props => {
         <label htmlFor="petType">Select Pet Type</label>
         <select name="petType" id="petType" onChange={handlePetChange} value={newPet.petType}>
           <option value="default" disabled hidden>Select Pet Type</option>
-          <option value="fourLegged">Four-Legged</option>
-          <option value="twoLegged">Two-Legged</option>
+          <option value="2">Four-Legged</option>
+          <option value="1">Two-Legged</option>
         </select>
 
         <label htmlFor="image">Image Source:
@@ -102,7 +102,7 @@ const NewPetForm = props => {
           <input className="button" type="submit" value="Submit" />
         </div>
       </form>)
-
+    }
   return (
     <>
       {appStatus}
