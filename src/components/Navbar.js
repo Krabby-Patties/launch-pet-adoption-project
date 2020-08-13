@@ -4,6 +4,7 @@ import AvailablePetsIndex from "./AvailablePetsIndex"
 import NewPetForm from "./NewPetForm"
 import PetTypesIndex from "./PetTypesIndex"
 import PetShowPage from "./PetShowPage"
+import ViewAdoptionForms from "./ViewAdoptionForms"
 
 const Navbar = props => {
   return (
@@ -29,6 +30,7 @@ const Navbar = props => {
         <Route exact path="/adoptions/new" component={NewPetForm} />
         <Route exact path="/pets/:species" component={AvailablePetsIndex} />
         <Route exact path="/pets/:species/:id" component={PetShowPage} />
+        <Route exact path="/admin/review/adoption" component={ViewAdoptionForms} />
       </Switch>
     </>
   );
