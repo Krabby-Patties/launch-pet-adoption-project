@@ -8,6 +8,8 @@ const AdoptionForm = props => {
     homeStatus: "default"
   })
 
+  const [adoptAppStatus, setAdoptAppStatus] = useState("")
+
   const handleAppChange = event => {
     setNewApplication({
       ...newApplication,

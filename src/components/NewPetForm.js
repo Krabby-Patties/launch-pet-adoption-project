@@ -47,8 +47,7 @@ const NewPetForm = props => {
       fetch("/api/v1/pet_surrender_applications", {
         method: 'POST',
         body: JSON.stringify(payload),
-        headers: { 'Content-Type': 'application/json' },
-        application_status: "pending"
+        headers: { 'Content-Type': 'application/json' }
       })
         .then(result => {
           if(result.ok){
@@ -61,7 +60,7 @@ const NewPetForm = props => {
   }
 
   let form;
-  if (appStatus !== "Your request is in process") {
+  
     form = (
       <form onSubmit={handlePetSubmit}>
         <label htmlFor="name">Your Name:
@@ -103,7 +102,6 @@ const NewPetForm = props => {
           <input className="button" type="submit" value="Submit" />
         </div>
       </form>)
-  }
 
   return (
     <>
