@@ -16,17 +16,16 @@ const ApprovalForm = props => {
 
     const handleApprovalSubmit = event => {
         event.preventDefault()
-        //fetch request goes here: 
         fetch("/api/v1/adoption_application_approval", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: {
+            body: JSON.stringify({
                 petId:currentlySelectedForm.pet_id,
                 applicationId:currentlySelectedForm.id,
                 approvalStatus:newApproval
-            }
+            })
         })
     };
 
@@ -70,8 +69,8 @@ const ApprovalForm = props => {
             <label htmlFor="approval">Choose Approval Status:</label>
             <select onChange={handleApprovalChange} value={newApproval} name="approval" id="approval">
                 <option value="">--Please choose an option--</option>
-                <option value="Approve">Approve</option>
-                <option value="Deny">Deny</option>
+                <option value="approved">Approve</option>
+                <option value="denied">Deny</option>
             </select>
 
             <input type="submit" value="Submit" />
