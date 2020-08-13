@@ -25,19 +25,18 @@ button {
   border: 2px solid black;
   border-radius: 2px;
 }
-/* this is just the one image on a pet's page */
+
 #showPageImg {
   width: 30%;
   height: auto;
 }
 
-/* these are the <p> with name, age, etc  */
 .showPage {
   background-color: var(--light);
 }
 
-/* My style.css starts here */
 img.pet-index-pictures {
   height: auto;
   width: 100%;
 }
+

@@ -11,11 +11,13 @@ const AvailablePetsIndex = props => {
       .then((availablePets) => {
         setAvailablePetsDisplay(availablePets.rows.map((pet) => {
           return (
-            <div className="columns small-3" key={pet.id}>
-              <img src={pet.img_url} alt={`Photo of ${pet.name}`} />
-              <Link to={`/pets//${pet.id}`}>Name: {pet.name}</Link>
-              <p>Age: {pet.age}</p>
-              <p>Vaccination Status: {pet.vaccination_status ? 'Yes' : 'No'}</p>
+            <div className="columns small-4" key={pet.id}>
+                <img src={pet.img_url} alt={`Photo of ${pet.name}`} />
+              <div>
+                <Link to={`/pets/${species}/${pet.id}`}>Name: {pet.name}</Link>
+                <p>Age: {pet.age}</p>
+                <p>Vaccination Status: {pet.vaccination_status ? 'Yes' : 'No'}</p>
+              </div>
             </div>
           )
         }));
