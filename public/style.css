@@ -12,8 +12,28 @@ body {
 }
 
 .navbar {
-  display: inline-block;
   margin-right: 5%;
+}
+
+.menu-text {
+  font-size: 40px;
+}
+
+.menu-text:hover {
+  color: var(--dark-blue);
+  background-color: var(--medium);
+}
+
+li {
+  border: 2px solid var(--dark-blue);
+  float: inline-end;
+  padding: 0em 2em;
+  border-radius: 20px;
+}
+
+li:hover {
+  background-color: var(--medium);
+  color: var(--darkblue);
 }
 
 img {

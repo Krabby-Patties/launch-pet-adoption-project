@@ -51,8 +51,8 @@ app.get('/api/v1/pet_types', (req, res) => {
 
 app.get('/api/v1/adoptable_pets', (req, res) => {
   const type_id = req.query.type
-  let queryString = "SELECT * FROM adoptable_pets WHERE type_id = ($1)"
-  pool.query(queryString, [type_id])
+  let queryString = type_id == "all"? "SELECT * FROM adoptable_pets": `SELECT * FROM adoptable_pets WHERE type_id = ${type_id}`
+  pool.query(queryString)
     .then(result => {
       res.send(result)
     })
@@ -62,6 +62,13 @@ app.get("/api/v1/show_page", (req, res) => {
   const petId = req.query.id
   const queryString = "SELECT * FROM adoptable_pets WHERE id = ($1) "
   pool.query(queryString, [petId]).then(result => {
+    res.send(result)
+  })
+})
+
+app.get("/api/v1/adoption_application", (req, res) => {
+  const queryString = "SELECT * FROM adoption_applications"
+  pool.query(queryString).then(result => {
     res.send(result)
   })
 })
@@ -80,19 +87,39 @@ app.post("/api/v1/adoption_application", (req, res) => {
     })
 })
 
+app.post("/api/v1/adoption_application_approval", (req, res) => {
+  const { petId, applicationId, approvalStatus } = req.body
+  const queryString1 = `UPDATE adoptable_pets SET adoption_status= '${approvalStatus}' where id = ${petId}`
+  const queryString2 = `UPDATE adoption_applications SET application_status='${approvalStatus}' where id=${applicationId}`
+
+  pool.query(queryString1).then(result => {
+    
+    pool.query(queryString2).then(result => {
+      res.sendStatus(201)
+    })
+    .catch(error => {
+      res.sendStatus(500)
+      console.log(error)
+    })
+  }) .catch(error => {
+    res.sendStatus(500)
+    console.log(error)
+  })
+})
+
 app.post("/api/v1/pet_surrender_applications", (req, res) => {
   const { name, phoneNumber, email, petName, petAge, petType, petImage, vaccinationStatus } = req.body
   const newPetAdoptQuery = "INSERT INTO pet_surrender_applications (name, phone_number, email, pet_name, pet_age, pet_type_id, pet_image_url, vaccination_status, application_status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)"
   const newPetAdoptAppStatus = "pending"
 
   pool.query(newPetAdoptQuery, [name, phoneNumber, email, petName, petAge, petType, petImage, vaccinationStatus, newPetAdoptAppStatus])
-  .then(result => {
-    res.sendStatus(201)
-  })
-  .catch(error => {
-    res.sendStatus(500)
-    console.log(error)
-  })
+    .then(result => {
+      res.sendStatus(201)
+    })
+    .catch(error => {
+      res.sendStatus(500)
+      console.log(error)
+    })
 
 })
 

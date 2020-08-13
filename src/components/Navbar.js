@@ -4,6 +4,8 @@ import AvailablePetsIndex from "./AvailablePetsIndex"
 import NewPetForm from "./NewPetForm"
 import PetTypesIndex from "./PetTypesIndex"
 import PetShowPage from "./PetShowPage"
+import ViewAdoptionForms from "./ViewAdoptionForms"
+import AdoptedPetsIndex from "./AdoptedPetsIndex"
 
 const Navbar = props => {
   return (
@@ -12,7 +14,7 @@ const Navbar = props => {
         <div className="top-bar-left">
           <ul className="dropdown menu" data-dropdown-menu>
             <li className="menu-text">
-              Pet Adoption 
+              Pet Adoption
             </li>
 
             <li>
@@ -32,7 +34,13 @@ const Navbar = props => {
                 <Link to="/pets/2">Four Legged Pets</Link>
               </div>
             </li>
- 
+
+            <li>
+              <div className="navbar">
+                <Link to="/pets/adopted/">View Adopted Pets</Link>
+              </div>
+            </li>
+            
             <li>
               <div className="navbar">
                 <Link to="/adoptions/new">Put a Pet Up For Adoption</Link>
@@ -41,15 +49,16 @@ const Navbar = props => {
           </ul>
         </div>
       </div>
-      
+
       <Switch>
         <Route exact path="/pets" component={PetTypesIndex} />
+        <Route exact path="/pets/adopted/" component={AdoptedPetsIndex} />
         <Route exact path="/adoptions/new" component={NewPetForm} />
         <Route exact path="/pets/:species" component={AvailablePetsIndex} />
         <Route exact path="/pets/:species/:id" component={PetShowPage} />
+        <Route exact path="/admin/review/adoption" component={ViewAdoptionForms} />
       </Switch>
     </>
   );
 };
-
 export default Navbar;
