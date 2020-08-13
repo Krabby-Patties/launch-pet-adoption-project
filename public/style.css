@@ -54,3 +54,8 @@ button {
 .showPage {
   background-color: var(--light);
 }
+
+img.pet-index-pictures {
+  height: auto;
+  width: 100%;
+}

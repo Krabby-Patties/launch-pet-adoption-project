@@ -15,21 +15,25 @@ const Navbar = props => {
             <li className="menu-text">
               Pet Adoption 
             </li>
+
             <li>
               <div className="navbar">
                 <Link to="/pets">Home</Link>
               </div>
             </li>
+
             <li>
               <div className="navbar">
                 <Link to="/pets/1">Two Legged Pets</Link>
               </div>
             </li>
+
             <li>
               <div className="navbar">
                 <Link to="/pets/2">Four Legged Pets</Link>
               </div>
             </li>
+
             <li>
               <div className="navbar">
                 <Link to="/adoptions/new">Put a Pet Up For Adoption</Link>
@@ -38,6 +42,7 @@ const Navbar = props => {
           </ul>
         </div>
       </div>
+
       <Switch>
         <Route exact path="/pets" component={PetTypesIndex} />
         <Route exact path="/adoptions/new" component={NewPetForm} />
