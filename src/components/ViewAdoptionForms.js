@@ -16,7 +16,6 @@ const ApprovalForm = props => {
 
     const handleApprovalSubmit = event => {
         event.preventDefault()
-        //fetch request goes here: 
         fetch("/api/v1/adoption_application_approval", {
             method: "POST",
             headers: {
