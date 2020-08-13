@@ -34,7 +34,7 @@ const PetShowPage = (props) => {
       <img src={adoptablePet.img_url} alt={`Photo of ${adoptablePet.name}`} />
       <p>Name: {adoptablePet.name}</p>
       <p>Age: {adoptablePet.age}</p>
-      <p>Vaccination Status: {adoptablePet.vaccination_status}</p>
+      <p>Vaccination Status: {adoptablePet.vaccination_status ? 'Yes' : 'No'}</p>
       <p>Adopt me: {adoptablePet.adoption_story}</p>
     </div>
   )

@@ -51,8 +51,8 @@ app.get('/api/v1/pet_types', (req, res) => {
 
 app.get('/api/v1/adoptable_pets', (req, res) => {
   const type_id = req.query.type
-  let queryString = "SELECT * FROM adoptable_pets WHERE type_id = ($1)"
-  pool.query(queryString, [type_id])
+  let queryString = type_id == "all"? "SELECT * FROM adoptable_pets": `SELECT * FROM adoptable_pets WHERE type_id = ${type_id}`
+  pool.query(queryString)
     .then(result => {
       res.send(result)
     })
