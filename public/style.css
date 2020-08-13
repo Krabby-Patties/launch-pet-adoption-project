@@ -40,3 +40,15 @@ img.pet-index-pictures {
   width: 100%;
 }
 
+
+
+
+/* Form Stuff */
+form#put-pet-up-for-adoption {
+  border-radius: 5px;
+  padding: 25px;
+  background-color: #e0793d;
+  width: 50%;
+  margin: 0 auto;
+}
+
