@@ -9,22 +9,35 @@ import ViewAdoptionForms from "./ViewAdoptionForms"
 const Navbar = props => {
   return (
     <>
-      <div className="navbar">
-        <Link to="/pets">Home</Link>
+      <div className="top-bar">
+        <div className="top-bar-left">
+          <ul className="dropdown menu" data-dropdown-menu>
+            <li className="menu-text">
+              Pet Adoption 
+            </li>
+            <li>
+              <div className="navbar">
+                <Link to="/pets">Home</Link>
+              </div>
+            </li>
+            <li>
+              <div className="navbar">
+                <Link to="/pets/1">Two Legged Pets</Link>
+              </div>
+            </li>
+            <li>
+              <div className="navbar">
+                <Link to="/pets/2">Four Legged Pets</Link>
+              </div>
+            </li>
+            <li>
+              <div className="navbar">
+                <Link to="/adoptions/new">Put a Pet Up For Adoption</Link>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div className="navbar">
-        <Link to="/pets/1">Two Legged Pets</Link>
-      </div>
-      <div className="navbar">
-        <Link to="/pets/2">Four Legged Pets</Link>
-      </div>
-      <div className="navbar">
-        <Link to="/adoptions/new">Put a Pet Up For Adoption</Link>
-      </div>
-      <div className="content">
-        <h1 className="page-title">Pet Adoption</h1>
-      </div>
-
       <Switch>
         <Route exact path="/pets" component={PetTypesIndex} />
         <Route exact path="/adoptions/new" component={NewPetForm} />
@@ -35,5 +48,4 @@ const Navbar = props => {
     </>
   );
 };
-
 export default Navbar;
