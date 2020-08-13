@@ -5,7 +5,7 @@ const AdoptionForm = props => {
     name: "",
     phoneNumber: "",
     email: "",
-    homeStatus: "default"
+    homeStatus: "default",
   })
 
   const [adoptAppStatus, setAdoptAppStatus] = useState("")
@@ -23,7 +23,8 @@ const AdoptionForm = props => {
       name: newApplication.name,
       phoneNumber: newApplication.phoneNumber,
       email: newApplication.email,
-      homeStatus: newApplication.homeStatus
+      homeStatus: newApplication.homeStatus,
+      petId: props.petId,
     }
 
     let filledOut = true;

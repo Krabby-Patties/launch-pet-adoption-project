@@ -19,7 +19,7 @@ CREATE TABLE adoptable_pets(
 );
 
 DROP TABLE IF EXISTS adoption_applications;
-CREATE TABLE adoption_application(
+CREATE TABLE adoption_applications(
   id SERIAL PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   phone_number VARCHAR(10) NOT NULL, 

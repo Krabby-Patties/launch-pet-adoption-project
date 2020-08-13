@@ -12,7 +12,10 @@ const Navbar = props => {
         <Link to="/pets">Home</Link>
       </div>
       <div className="navbar">
-        <Link to="/pet_types">Pet Types</Link>
+        <Link to="/pets/1">Two Legged Pets</Link>
+      </div>
+      <div className="navbar">
+        <Link to="/pets/2">Four Legged Pets</Link>
       </div>
       <div className="navbar">
         <Link to="/adoptions/new">Put a Pet Up For Adoption</Link>
