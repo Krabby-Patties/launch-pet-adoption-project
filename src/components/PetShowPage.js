@@ -31,11 +31,11 @@ const PetShowPage = (props) => {
   }
   const animalInformation = (
     <div>
-      <img src={adoptablePet.img_url} alt={`Photo of ${adoptablePet.name}`} />
-      <p>Name: {adoptablePet.name}</p>
-      <p>Age: {adoptablePet.age}</p>
-      <p>Vaccination Status: {adoptablePet.vaccination_status}</p>
-      <p>Adopt me: {adoptablePet.adoption_story}</p>
+      <img src={adoptablePet.img_url} alt={`Photo of ${adoptablePet.name}`} id="showPageImg"/>
+      <p className="showPage">Name: {adoptablePet.name}</p>
+      <p className="showPage">Age: {adoptablePet.age}</p>
+      <p className="showPage">Vaccination Status: {adoptablePet.vaccination_status}</p>
+      <p className="showPage">Adopt me: {adoptablePet.adoption_story}</p>
     </div>
   )
 
