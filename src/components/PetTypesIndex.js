@@ -9,10 +9,12 @@ const PetTypesIndex = props => {
       .then((petTypes) => {
         setPetTypesDisplay(petTypes.rows.map((petType) => {
           return (
-            <div key={petType.id}>
-              <Link to={`/pets/${petType.id}`}><img src={petType.img_url_random_animal} /></Link>
-              <Link to={`/pets/${petType.id}`}>{petType.type}</Link>
-              <p>{petType.description}</p>
+            <div className="columns medium-6" key={petType.id}>
+              <Link to={`/pets/${petType.id}`}><img className="pet-index-pictures" src={petType.img_url_random_animal} /></Link>
+              <div>
+                <Link to={`/pets/${petType.id}`}>{petType.type}</Link>
+                <p>{petType.description}</p>
+              </div>
             </div>
           )
         }));
@@ -21,9 +23,13 @@ const PetTypesIndex = props => {
 
   return (
     <>
-      <h1>Adopt a pet!</h1>
-      <p>Here are the pet types we have available:</p>
-      {petTypesDisplay}
+      <div className="pet-index-page-heading">
+        <h1>Adopt a pet!</h1>
+        <p>Here are the pet types we have available:</p>
+      </div>
+      <div className="row">
+        {petTypesDisplay}
+      </div>
     </>
   );
 };
