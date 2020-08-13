@@ -10,22 +10,24 @@ const AvailablePetsIndex = props => {
       .then((response) => response.json())
       .then((availablePets) => {
         setAvailablePetsDisplay(availablePets.rows.map((pet) => {
-          return (
-            <tr key={pet.id}>
-              <td><img src={pet.img_url} alt={`Photo of ${pet.name}`} /></td>
-              <td><Link to={`/pets/${species}/${pet.id}`}>{pet.name}</Link></td>
-              <td>{pet.age}</td>
-              <td>{pet.vaccination_status ? 'Yes' : 'No'}</td>
-            </tr>
-          )
+          if (pet.adoption_status == "null" || pet.adoption_status == "denied") {
+            return (
+              <tr key={pet.id}>
+                <td><img src={pet.img_url} alt={`Photo of ${pet.name}`} /></td>
+                <td><Link to={`/pets/${species}/${pet.id}`}>{pet.name}</Link></td>
+                <td>{pet.age}</td>
+                <td>{pet.vaccination_status ? 'Yes' : 'No'}</td>
+              </tr>
+            )
+          }
         }));
       });
   }, [species]);
 
   let speciesName = ""
-  if(species == 1){
+  if (species == 1) {
     speciesName = "Two Legged"
-  } else if (species== 2) {
+  } else if (species == 2) {
     speciesName = "Four Legged"
   }
 
