@@ -66,6 +66,36 @@ app.get("/api/v1/show_page", (req, res) => {
   })
 })
 
+app.post("/api/v1/adoption_application", (req, res) => {
+  const { name, phoneNumber, email, homeStatus, petId } = req.body
+  const adoptQueryString = "INSERT INTO adoption_applications (name, phone_number, email, home_status, application_status, pet_id) VALUES ($1, $2, $3, $4, $5, $6)"
+  const applicationStatus = "pending"
+
+  pool.query(adoptQueryString, [name, phoneNumber, email, homeStatus, applicationStatus, petId]).then(result => {
+    res.sendStatus(201)
+  })
+    .catch(error => {
+      console.log(error)
+      res.sendStatus(500)
+    })
+})
+
+app.post("/api/v1/pet_surrender_applications", (req, res) => {
+  const { name, phoneNumber, email, petName, petAge, petType, petImage, vaccinationStatus } = req.body
+  const newPetAdoptQuery = "INSERT INTO pet_surrender_applications (name, phone_number, email, pet_name, pet_age, pet_type_id, pet_image_url, vaccination_status, application_status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)"
+  const newPetAdoptAppStatus = "pending"
+
+  pool.query(newPetAdoptQuery, [name, phoneNumber, email, petName, petAge, petType, petImage, vaccinationStatus, newPetAdoptAppStatus])
+  .then(result => {
+    res.sendStatus(201)
+  })
+  .catch(error => {
+    res.sendStatus(500)
+    console.log(error)
+  })
+
+})
+
 app.get('*', (req, res) => {
   res.render("home")
 })
