@@ -1,1 +1,56 @@
-/* your styles, here */
+:root {
+  --light: #f3f3f4;
+  --medium: #e0793d;
+  --dark-blue: #2d3047;
+  --medium-blue: #0d3b66;
+}
+
+body {
+  background-color: var(--light);
+  color: var(--medium);
+  text-align: center;
+}
+
+.navbar {
+  margin-right: 5%;
+}
+
+.menu-text {
+  font-size: 40px;
+}
+
+.menu-text:hover {
+  color: var(--dark-blue);
+  background-color: var(--medium);
+}
+
+li {
+  border: 2px solid var(--dark-blue);
+  float: inline-end;
+  padding: 0em 2em;
+  border-radius: 20px;
+}
+
+li:hover {
+  background-color: var(--medium);
+  color: var(--darkblue);
+}
+
+img {
+  width: 250px;
+  height: 250px;
+}
+
+button {
+  border: 2px solid black;
+  border-radius: 2px;
+}
+
+#showPageImg {
+  width: 30%;
+  height: auto;
+}
+
+.showPage {
+  background-color: var(--light);
+}
