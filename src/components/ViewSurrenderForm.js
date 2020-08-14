@@ -22,8 +22,8 @@ const SurrenderForm = props => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id:currentlySelectedApp.id,
-                applicationStatus:currentlySelectedApp.newSurrender
+                id: currentlySelectedApp.id,
+                applicationStatus: currentlySelectedApp.newSurrender
             })
         })
     };
@@ -32,11 +32,16 @@ const SurrenderForm = props => {
         fetch("/api/v1/surrender_application").then((response) => response.json())
             .then(surrenderForms => {
                 setAllSurrenderForms(surrenderForms.rows)
-            })}
+            })
+    }
         , [])
 
     let viewAllForms = allSurrenderForms.map(SurrenderForm => {
-    return <option key={SurrenderForm.id} value={JSON.stringify(SurrenderForm)}>--{`${SurrenderForm.name}, Surrender Application #${SurrenderForm.id}, ${SurrenderForm.application_status}`}--</option>
+        return (
+            <option key={SurrenderForm.id} value={JSON.stringify(SurrenderForm)}>
+                --{`${SurrenderForm.name}, Surrender Application #${SurrenderForm.id}, ${SurrenderForm.application_status}`}--
+            </option>
+        )
     })
 
     let viewFormDisplay
@@ -75,7 +80,6 @@ const SurrenderForm = props => {
 
             <input type="submit" value="Submit" />
         </form>)
+}
 
-    }
-
-    export default SurrenderForm
+export default SurrenderForm

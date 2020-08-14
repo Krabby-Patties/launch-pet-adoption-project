@@ -7,6 +7,7 @@ import PetShowPage from "./PetShowPage"
 import ViewAdoptionForms from "./ViewAdoptionForms"
 import AdoptedPetsIndex from "./AdoptedPetsIndex"
 import ViewSurrenderForm from "./ViewSurrenderForm"
+
 const Navbar = props => {
   return (
     <>
@@ -40,7 +41,7 @@ const Navbar = props => {
                 <Link to="/pets/adopted/">View Adopted Pets</Link>
               </div>
             </li>
-            
+
             <li>
               <div className="navbar">
                 <Link to="/adoptions/new">Put a Pet Up For Adoption</Link>
