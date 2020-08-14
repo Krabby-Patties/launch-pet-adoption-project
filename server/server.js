@@ -51,7 +51,7 @@ app.get('/api/v1/pet_types', (req, res) => {
 
 app.get('/api/v1/adoptable_pets', (req, res) => {
   const type_id = req.query.type
-  let queryString = type_id == "all"? "SELECT * FROM adoptable_pets": `SELECT * FROM adoptable_pets WHERE type_id = ${type_id}`
+  let queryString = type_id == "all" ? "SELECT * FROM adoptable_pets" : `SELECT * FROM adoptable_pets WHERE type_id = ${type_id}`
   pool.query(queryString)
     .then(result => {
       res.send(result)
@@ -68,6 +68,12 @@ app.get("/api/v1/show_page", (req, res) => {
 
 app.get("/api/v1/adoption_application", (req, res) => {
   const queryString = "SELECT * FROM adoption_applications"
+  pool.query(queryString).then(result => {
+    res.send(result)
+  })
+})
+app.get("/api/v1/surrender_application", (req, res) => {
+  const queryString = "SELECT * FROM pet_surrender_applications"
   pool.query(queryString).then(result => {
     res.send(result)
   })
@@ -93,18 +99,44 @@ app.post("/api/v1/adoption_application_approval", (req, res) => {
   const queryString2 = `UPDATE adoption_applications SET application_status='${approvalStatus}' where id=${applicationId}`
 
   pool.query(queryString1).then(result => {
-    
+
     pool.query(queryString2).then(result => {
       res.sendStatus(201)
     })
+      .catch(error => {
+        res.sendStatus(500)
+        console.log(error)
+      })
+  }).catch(error => {
+    res.sendStatus(500)
+    console.log(error)
+  })
+})
+
+app.post("/api/v1/adoption_surrender_approval", (req, res) => {
+  const { id, applicationStatus } = req.body
+  const queryString1 = `UPDATE pet_surrender_applications SET application_status = '${applicationStatus}' where id = '${id}' RETURNING *`
+  const queryString2 = "INSERT INTO adoptable_pets (name, img_url, age, vaccination_status, adoption_story, adoption_status, type_id) VALUES ($1, $2, $3, $4, $5, $6, $7) "
+ 
+  pool.query(queryString1).then(result => {
+    const surrenderedPet = result.rows[0]
+    const adoptionStory = "Please adopt me, I need a home!"
+    const adoptionStatus = "null"
+    const { pet_name, pet_age, pet_type_id, pet_image_url, vaccination_status } = surrenderedPet
+
+    pool.query(queryString2, [pet_name, pet_image_url, pet_age, vaccination_status, adoptionStory, adoptionStatus, pet_type_id])
+      .then(result => {
+        res.sendStatus(201)
+      })
+      .catch(error => {
+        res.sendStatus(500)
+        console.log(error)
+      })
+  })
     .catch(error => {
       res.sendStatus(500)
       console.log(error)
     })
-  }) .catch(error => {
-    res.sendStatus(500)
-    console.log(error)
-  })
 })
 
 app.post("/api/v1/pet_surrender_applications", (req, res) => {
@@ -120,7 +152,6 @@ app.post("/api/v1/pet_surrender_applications", (req, res) => {
       res.sendStatus(500)
       console.log(error)
     })
-
 })
 
 app.get('*', (req, res) => {
