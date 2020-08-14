@@ -72,7 +72,6 @@ app.get("/api/v1/adoption_application", (req, res) => {
     res.send(result)
   })
 })
-// New Stuff: to handle the fetch in the viewSurrenderForm
 app.get("/api/v1/surrender_application", (req, res) => {
   const queryString = "SELECT * FROM pet_surrender_applications"
   pool.query(queryString).then(result => {
@@ -114,7 +113,6 @@ app.post("/api/v1/adoption_application_approval", (req, res) => {
   })
 })
 
-//New stuff here
 app.post("/api/v1/adoption_surrender_approval", (req, res) => {
   const { id, applicationStatus } = req.body
   const queryString1 = `UPDATE pet_surrender_applications SET application_status = '${applicationStatus}' where id = '${id}' RETURNING *`
