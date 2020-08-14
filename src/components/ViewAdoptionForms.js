@@ -44,7 +44,7 @@ const ApprovalForm = props => {
     if (currentlySelectedForm !== null) {
         formDisplay = (
             <div>
-                <ul>
+                <ul className="form-display">
                     <li>{`Applicant Id# ${currentlySelectedForm.id}`}</li>
                     <li>{`Pet Id# ${currentlySelectedForm.pet_id}`}</li>
                     <li>{`Applicant Name:${currentlySelectedForm.name}`}</li>
@@ -57,7 +57,7 @@ const ApprovalForm = props => {
     }
 
     return (
-        <form onSubmit={handleApprovalSubmit} >
+        <form className="put-pet-up-for-adoption adoption-form-section" onSubmit={handleApprovalSubmit} >
             <label htmlFor="completedForms">Select a form to reveiw:</label>
             <select onChange={handleSelectionChange} name="completedForms" id="completedForms">
                 <option value="null">--Please choose an option--</option>
@@ -73,7 +73,7 @@ const ApprovalForm = props => {
                 <option value="denied">Deny</option>
             </select>
 
-            <input type="submit" value="Submit" />
+            <input className="submit-btn" type="submit" value="Submit" />
         </form >)
 }
 
