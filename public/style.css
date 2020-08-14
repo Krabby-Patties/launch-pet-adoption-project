@@ -60,15 +60,35 @@ img.pet-index-pictures {
   width: 100%;
 }
 
-
-
-
-/* Form Stuff */
-form#put-pet-up-for-adoption {
-  border-radius: 5px;
+form.put-pet-up-for-adoption {
+  border-radius: 10px;
   padding: 25px;
-  background-color: #e0793d;
+  background-color: var(--medium-blue);
   width: 50%;
-  margin: 0 auto;
+  margin: 4rem auto 0 auto;
+  color: white;
 }
 
+.adoption-form-section label {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: left;
+}
+.adoption-form-section h2 {
+  font-weight: bolder;
+  color: var(--medium);
+}
+
+input[type=submit].submit-btn {
+  font-size: 1.5em;
+  background-color: var(--medium);
+  font-weight: bold;
+}
+
+input[type=submit].submit-btn:hover {
+  background-color: var(--light);
+  color: var(--medium);
+  font-size: 1.5em;
+  font-weight: bolder;
+} 

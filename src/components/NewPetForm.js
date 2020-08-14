@@ -9,7 +9,7 @@ const NewPetForm = props => {
     petAge: "",
     petType: "default",
     petImage: "",
-    vaccinationStatus: ""
+    vaccinationStatus: "default"
   })
 
   const [appStatus, setAppStatus] = useState("");
@@ -62,46 +62,52 @@ const NewPetForm = props => {
   let form;
   if(appStatus !== "Your request is in process"){
     form = (
-      <form id="put-pet-up-for-adoption" onSubmit={handlePetSubmit}>
-        <label htmlFor="name">Your Name:
-          <input type="text" name="name" id="name" onChange={handlePetChange} value={newPet.name} />
-        </label>
-      
-        <label htmlFor="phoneNumber">Phone Number:
-          <input type="text" name="phoneNumber" id="phoneNumber" onChange={handlePetChange} value={newPet.phoneNumber} />
-        </label>
-      
-        <label htmlFor="email">Email Address:
-          <input type="text" name="email" id="email" onChange={handlePetChange} value={newPet.email} />
-        </label>
-      
-        <label htmlFor="petName">Pet Name:
-          <input type="text" name="petName" id="petName" onChange={handlePetChange} value={newPet.petName} />
-        </label>
-      
-        <label htmlFor="petAge">Pet Age:
-          <input type="text" name="petAge" id="petAge" onChange={handlePetChange} value={newPet.petAge} />
-        </label>
-      
-        <label htmlFor="petType">Select Pet Type</label>
-          <select name="petType" id="petType" onChange={handlePetChange} value={newPet.petType}>
-            <option value="default" disabled hidden>Select Pet Type</option>
-            <option value="2">Four-Legged</option>
-            <option value="1">Two-Legged</option>
-        </select>
-      
-        <label htmlFor="image">Image Source:
-          <input type="text" name="petImage" id="petImage" onChange={handlePetChange} value={newPet.petImage} />
-        </label>
-      
-        <label htmlFor="vaccinationStatus">Vaccination Status:
-          <input type="text" name="vaccinationStatus" id="vaccinationStatus" onChange={handlePetChange} value={newPet.vaccinationStatus} />
-        </label>
-      
-        <div>
-          <input className="button" type="submit" value="Submit" />
-        </div>
-      </form>
+      <div className="adoption-form-section">
+        <form className="put-pet-up-for-adoption" onSubmit={handlePetSubmit}>
+          <h2>Put a Pet Up for Adoption!</h2>
+          <label htmlFor="name">Your Name:
+            <input type="text" name="name" id="name" onChange={handlePetChange} value={newPet.name} />
+          </label>
+        
+          <label htmlFor="phoneNumber">Phone Number:
+            <input type="text" name="phoneNumber" id="phoneNumber" onChange={handlePetChange} value={newPet.phoneNumber} />
+          </label>
+        
+          <label htmlFor="email">Email Address:
+            <input type="text" name="email" id="email" onChange={handlePetChange} value={newPet.email} />
+          </label>
+        
+          <label htmlFor="petName">Pet Name:
+            <input type="text" name="petName" id="petName" onChange={handlePetChange} value={newPet.petName} />
+          </label>
+        
+          <label htmlFor="petAge">Pet Age:
+            <input type="text" name="petAge" id="petAge" onChange={handlePetChange} value={newPet.petAge} />
+          </label>
+        
+          <label htmlFor="petType">Select Pet Type:</label>
+            <select name="petType" id="petType" onChange={handlePetChange} value={newPet.petType}>
+              <option value="default" disabled hidden>--Select Pet Type--</option>
+              <option value="2">Four-Legged</option>
+              <option value="1">Two-Legged</option>
+            </select>
+        
+          <label htmlFor="image">Image Source:
+            <input type="text" name="petImage" id="petImage" onChange={handlePetChange} value={newPet.petImage} />
+          </label>
+        
+          <label htmlFor="vaccinationStatus">Is your pet vaccinated? </label>
+            <select name="vaccinationStatus" id="vaccinationStatus" onChange={handlePetChange} value={newPet.vaccinationStatus}>
+              <option value="default" disabled hidden>--Choose one of the following--</option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+          </select>
+        
+          <div>
+            <input className="button submit-btn" type="submit" value="Submit" />
+          </div>
+        </form>
+      </div>
      )
     }
   return (
