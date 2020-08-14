@@ -28,9 +28,7 @@ const PetTypesIndex = props => {
         <p>Here are the pet types we have available:</p>
       </div>
       <div className="row">
-        
         {petTypesDisplay}
-        
       </div>
     </>
   );
