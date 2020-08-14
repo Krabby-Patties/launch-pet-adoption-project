@@ -12,33 +12,32 @@ const Navbar = props => {
       <div className="top-bar">
         <div className="top-bar-left">
           <ul className="dropdown menu" data-dropdown-menu>
-            <li className="menu-text">
-              Pet Adoption 
+          <li>
+            <Link to="/pets"> 
+            <div className="home">Pet Adoption</div>
+            </Link>
+          </li>
+           
+           <li>
+              <Link to="/pets/1">
+                <div className="navbar">
+                  Two Legged Pets
+                </div>
+              </Link>
+          </li>
+
+              <li>
+                <Link to="/pets/2">
+                 <div className="navbar"> Four Legged Pets</div>
+                </Link>
+              </li>
+           
+              <li>
+                <Link to="/adoptions/new">
+                  <div className="navbar">Put a Pet Up For Adoption </div>
+                </Link>
             </li>
 
-            <li>
-              <div className="navbar">
-                <Link to="/pets">Home</Link>
-              </div>
-            </li>
-
-            <li>
-              <div className="navbar">
-                <Link to="/pets/1">Two Legged Pets</Link>
-              </div>
-            </li>
-
-            <li>
-              <div className="navbar">
-                <Link to="/pets/2">Four Legged Pets</Link>
-              </div>
-            </li>
-
-            <li>
-              <div className="navbar">
-                <Link to="/adoptions/new">Put a Pet Up For Adoption</Link>
-              </div>
-            </li>
           </ul>
         </div>
       </div>

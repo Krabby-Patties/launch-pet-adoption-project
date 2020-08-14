@@ -11,29 +11,37 @@ body {
   text-align: center;
 }
 
-.navbar {
-  margin-right: 5%;
-}
-
-.menu-text {
+.home {
   font-size: 40px;
-}
-
-.menu-text:hover {
-  color: var(--dark-blue);
   background-color: var(--medium);
-}
-
-li {
+  color: var(--medium-blue);
   border: 2px solid var(--dark-blue);
   float: inline-end;
-  padding: 0em 2em;
+  height: 5rem;
+  border-radius: 20px;
+  line-height: 5rem;
+  padding: 0 2rem;
+}
+
+.home:hover {
+  color: var(--medium);
+  background-color: var(--medium-blue);
+}
+
+.navbar {
+  border: 2px solid var(--dark-blue);
+  float: inline-end;
+  padding: 5%;
   border-radius: 20px;
 }
 
-li:hover {
+.navbar:hover {
   background-color: var(--medium);
   color: var(--darkblue);
+}
+
+li {
+  display: inline;
 }
 
 img {
