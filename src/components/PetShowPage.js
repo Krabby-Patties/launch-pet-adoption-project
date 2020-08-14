@@ -30,19 +30,21 @@ const PetShowPage = (props) => {
     setIsAdopting(true)
   }  
   const animalInformation = (
-    <div>
+    <div className="individual-pet">
       <img src={adoptablePet.img_url} alt={`Photo of ${adoptablePet.name}`} />
-      <p>Name: {adoptablePet.name}</p>
-      <p>Age: {adoptablePet.age}</p>
-      <p>Vaccination Status: {adoptablePet.vaccination_status ? 'Yes' : 'No'}</p>
-      <p>Adopt me: {adoptablePet.adoption_story}</p>
+      <div className="individual-pet-information">
+        <p id="individual-pet-name"><b>{adoptablePet.name}</b></p>
+        <p className="individual-pet-attribute-name"><b>Age:</b> {adoptablePet.age}</p>
+        <p className="individual-pet-attribute-name"><b>Vaccination Status:</b> {adoptablePet.vaccination_status ? 'Yes' : 'No'}</p>
+        <p className="individual-pet-attribute-name"><b>My story:</b> {adoptablePet.adoption_story}</p>
+      </div>
     </div>
   )
 
   let form = ""
   let submitButton = (
     <form onSubmit={handleButtonClick}>
-      <input className="button" type="submit" value="Adopt Me!" />
+      <input className="button individual-pet-btn" type="submit" value="Adopt Me!" />
     </form>
   )
 

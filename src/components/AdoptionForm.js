@@ -87,7 +87,9 @@ const AdoptionForm = props => {
   }
   return (
     <>
-      {adoptAppStatus}
+      <h1>
+        <b>{adoptAppStatus}</b>
+      </h1>
       {adoptForm}
     </>
   )

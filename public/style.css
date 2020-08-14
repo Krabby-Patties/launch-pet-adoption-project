@@ -65,7 +65,7 @@ form.put-pet-up-for-adoption {
   padding: 25px;
   background-color: var(--medium-blue);
   width: 50%;
-  margin: 4rem auto 0 auto;
+  margin: 4rem auto 1rem auto;
   color: white;
 }
 
@@ -92,3 +92,40 @@ input[type=submit].submit-btn:hover {
   font-size: 1.5em;
   font-weight: bolder;
 } 
+
+input[type=submit].individual-pet-btn {
+  font-size: 1.5em;
+  background-color: var(--medium-blue);
+}
+
+input[type=submit].individual-pet-btn:hover {
+  background-color: var(--medium);
+  font-weight: bold;
+}
+
+.individual-pet {
+  border-radius: 10px;
+  box-shadow: 1px 1px 25px var(--medium);
+  width: 30rem;
+  height: auto;
+  margin: 6rem auto 3rem auto;
+}
+
+.individual-pet img {
+  margin-top: 1rem;
+  border-radius: 10px;
+}
+
+div.individual-pet-information {
+  margin: 1rem 2rem 2rem 2rem;
+  text-align: left;
+  color: var(--medium-blue)
+}
+
+#individual-pet-name {
+  font-size: 2em;
+}
+
+.individual-pet-attribute-name {
+  font-size: 1.2em;
+}

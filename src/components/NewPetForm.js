@@ -110,9 +110,12 @@ const NewPetForm = props => {
       </div>
      )
     }
+
   return (
     <>
-      {appStatus}
+      <h1>
+        <b>{appStatus}</b>
+      </h1>
       {form}
     </>
   )
