@@ -10,6 +10,7 @@ const AvailablePetsIndex = props => {
       .then((response) => response.json())
       .then((availablePets) => {
         setAvailablePetsDisplay(availablePets.rows.map((pet) => {
+        if(pet.adoption_status == "null" || pet.adoption_status == "denied") {
           return (
             <div className="columns small-4" key={pet.id}>
                 <img src={pet.img_url} alt={`Photo of ${pet.name}`} />
@@ -19,7 +20,7 @@ const AvailablePetsIndex = props => {
                 <p>Vaccination Status: {pet.vaccination_status ? 'Yes' : 'No'}</p>
               </div>
             </div>
-          )
+          )}
         }));
       });
   }, [species]);
