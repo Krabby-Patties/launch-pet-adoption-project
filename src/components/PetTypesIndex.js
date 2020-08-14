@@ -9,7 +9,7 @@ const PetTypesIndex = props => {
       .then((petTypes) => {
         setPetTypesDisplay(petTypes.rows.map((petType) => {
           return (
-            <div className="columns medium-6" key={petType.id}>
+            <div className="columns medium-5 home-pets" key={petType.id}>
               <Link to={`/pets/${petType.id}`}><img className="pet-index-pictures" src={petType.img_url_random_animal} /></Link>
               <div>
                 <Link to={`/pets/${petType.id}`}>{petType.type}</Link>

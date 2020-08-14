@@ -10,17 +10,18 @@ const AvailablePetsIndex = props => {
       .then((response) => response.json())
       .then((availablePets) => {
         setAvailablePetsDisplay(availablePets.rows.map((pet) => {
-        if(pet.adoption_status == "null" || pet.adoption_status == "denied") {
-          return (
-            <div className="columns small-4" key={pet.id}>
+          if (pet.adoption_status == "null" || pet.adoption_status == "denied") {
+            return (
+              <div className="columns small-3 display-pets" key={pet.id}>
                 <img src={pet.img_url} alt={`Photo of ${pet.name}`} />
-              <div>
-                <Link to={`/pets/${species}/${pet.id}`}>Name: {pet.name}</Link>
-                <p>Age: {pet.age}</p>
-                <p>Vaccination Status: {pet.vaccination_status ? 'Yes' : 'No'}</p>
+                <div>
+                  <Link to={`/pets/${species}/${pet.id}`}>Name: {pet.name}</Link>
+                  <p>Age: {pet.age}</p>
+                  <p>Vaccination Status: {pet.vaccination_status ? 'Yes' : 'No'}</p>
+                </div>
               </div>
-            </div>
-          )}
+            )
+          }
         }));
       });
   }, [species]);
@@ -35,9 +36,12 @@ const AvailablePetsIndex = props => {
   return (
     <>
       <h1>{speciesName}</h1>
-      <div className="row">
-        {availablePetsDisplay}
+      <div class="grid-container">
+        <div class="grid-x">
+          {availablePetsDisplay}
+        </div>
       </div>
+
     </>
   );
 };
